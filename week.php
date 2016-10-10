@@ -11,6 +11,9 @@ final class Week extends \DateTime
 
 	public function __construct($root, $date = null)
 	{
+		if ($date instanceof \DateTimeInterface) {
+			$date = $date->format(self::W3C);
+		}
 		if (! is_dir($root)) {
 			throw new \InvalidArgumentException("{$root} is not a directory.", 500);
 		}
@@ -49,4 +52,3 @@ final class Week extends \DateTime
 		return $this->format($format);
 	}
 }
-
